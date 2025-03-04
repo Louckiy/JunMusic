@@ -1,0 +1,399 @@
+:root {
+    --primary-color: #b95b1d;
+    --background-color: #121212;
+    --sidebar-color: #000;
+    --text-color: #fff;
+    --text-secondary: #b3b3b3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    height: 100vh;
+}
+
+.main-content {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.track-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.track-card {
+    position: relative;
+    background-color: #282828;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.track-card:hover {
+    transform: scale(1.05);
+}
+
+.track-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.track-card h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.track-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.add-to-playlist {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.add-to-playlist:hover {
+    opacity: 1;
+}
+
+.audio-player {
+    grid-column: 1 / -1;
+    background-color: #181818;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.player-controls {
+    display: flex;
+    gap: 15px;
+}
+
+.player-controls button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 20px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.player-controls button:hover {
+    opacity: 0.7;
+}
+
+.track-info {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.progress-bar {
+    width: 100%;
+    margin: 10px 0;
+}
+
+#progress {
+    width: 100%;
+    cursor: pointer;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#volume-slider {
+    width: 100px;
+    cursor: pointer;
+}
+
+#mute {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+audio {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .track-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .audio-player {
+        flex-direction: column;
+    }
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-button.active {
+    background-color: var(--primary-color);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #1ed760;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#create-playlist {
+    background-color: #b9701d;
+    margin-bottom: 20px;
+}
+
+#create-playlist:hover {
+    background-color: #d7771e;
+}
+
+.player-controls button {
+    background-color: transparent;
+    color: var(--text-color);
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-controls button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.playlist-card button {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.playlist-card button:hover {
+    background-color: #ff1a1a;
+}
+
+.tab-button {
+    background-color: transparent;
+    color: var(--text-color);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 10px;
+}
+
+.tab-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tab-button.active {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+button {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для плейлистов */
+.playlist-grid {
+    display: flex;
+    flex-direction: column; /* Располагаем плейлисты сверху вниз */
+    gap: 20px; /* Расстояние между плейлистами */
+}
+
+.playlist-card {
+    background-color: #282828;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%; /* Плейлист занимает всю ширину */
+}
+
+.playlist-card h3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-bottom: 10px; /* Отступ снизу */
+}
+
+.playlist-card h3 .toggle-tracks {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.playlist-card h3 .toggle-tracks.collapsed {
+    transform: rotate(-90deg);
+}
+
+.playlist-tracks {
+    display: none; /* Треки скрыты по умолчанию */
+    margin-top: 10px;
+}
+
+.playlist-tracks.visible {
+    display: grid; /* Показываем треки */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Треки в сетке */
+    gap: 10px; /* Расстояние между треками */
+}
+
+.playlist-tracks .track-card {
+    background-color: #1f1f1f;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.playlist-tracks .track-card:hover {
+    transform: scale(1.05);
+}
+
+.playlist-tracks .track-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.playlist-tracks .track-card h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.playlist-tracks .track-card p {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.remove-from-playlist {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.remove-from-playlist:hover {
+    color: #ff1a1a;
+}
+
+/* Стили для кнопки удаления плейлиста */
+.playlist-card h3 .delete-playlist {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.playlist-card h3 .delete-playlist:hover {
+    color: #ff1a1a;
+}
+
+/* Стили для заголовка плейлиста */
+.playlist-card h3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+/* Стили для контейнера с названием и кнопкой удаления */
+.playlist-card h3 .playlist-header {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Расстояние между названием и кнопкой удаления */
+}
+
+/* Стили для кнопки удаления плейлиста */
+.playlist-card h3 .delete-playlist {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.playlist-card h3 .delete-playlist:hover {
+    color: #ff1a1a;
+}
+
+/* Стили для стрелочки */
+.playlist-card h3 .toggle-tracks {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+    margin-left: auto; /* Перемещаем стрелочку вправо */
+}
+
+.playlist-card h3 .toggle-tracks.collapsed {
+    transform: rotate(-90deg);
+}
